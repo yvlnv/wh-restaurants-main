@@ -1,0 +1,25 @@
+<main>
+    <div><h1>Restaurants</h1></div>
+    <section class="RestaurantsList">
+        {{#each restaurants}}
+        <a href="/restaurants/{{this.id}}">
+            <article class="restaurant_card">
+                <header style="background-image: url({{this.image}});", class="restaurant">
+                    <main>{{this.name}}</main>
+                    <section class="RestaurantCardMenuList">
+                        {{#if this.menus}}
+                        <ul>
+                        {{#each this.menus}}
+                            <li>{{this.title}}</li>
+                        {{/each}}
+                        </ul>
+                        {{else}}
+                            <p>No menus available</p>
+                        {{/if}}
+                    </section>
+                </header>
+            </article>
+        {{/each}}
+    </section>
+    <footer>{{date}}</footer>
+</main>

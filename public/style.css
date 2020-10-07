@@ -1,0 +1,168 @@
+body {
+    background-color: white;
+    color: white;
+    margin: 0;
+} 
+
+h1 {
+    color: rgb(236, 167, 46);
+    text-align: center;
+    font-family: Verdana;
+    border-bottom: solid 1px rgb(236, 167, 46);
+    border-top: solid 1px rgb(236, 167, 46);
+    padding: 2rem;
+    height: 20px;
+  }
+
+h2, dt, dd {
+  color: black;
+  padding-left: 1rem;
+  }
+
+div {
+    background-color: rgb(239, 240, 240);
+    word-wrap: break-word;
+    height: 110px;
+  }
+a {
+  text-decoration: none;
+}
+  
+.bottom {
+    bottom: 8px;
+    right: 16px;
+  }
+
+footer {
+  color: rgb(236, 167, 46);
+}
+
+article {
+  border: solid 1px rgb(236, 167, 46);
+  word-wrap: break-word;
+}
+
+.restaurant_card {
+  word-wrap: break-word;
+  margin: 1rem;
+}
+
+.restaurant_card:hover {
+  border: solid 5px rgb(236, 167, 46);
+  margin: -5px;
+}
+
+.menu_card {
+  margin: 1rem;
+}
+
+p {
+  margin: 5px;
+}
+
+nav {
+  position: fixed;
+  background-color: rgb(239, 240, 240);
+  top: 0;
+  width: 100%;
+  height: 35px;
+  overflow: hidden;
+  border-bottom: solid 1px rgb(236, 167, 46);
+}
+
+nav a {
+  float: left;
+  display: block;
+  color: rgb(236, 167, 46);
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+}
+
+a {
+  color: rgb(236, 167, 46);
+  font-family: verdana;
+}
+
+article header {
+  height: 25rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+header main {
+  color: rgb(236, 167, 46);
+  text-align: center;
+  font-size: 200%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgb(239, 240, 240, 0.9);
+}
+
+section p {
+  text-align: center;
+}
+
+.menu{
+  justify-content: space-between;
+  padding-left: 5px;
+  height: 40px;
+}
+
+.restaurant_page {
+  height: 25rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+header h1 {
+  color: rgb(236, 167, 46);
+  text-align: center;
+  font-size: 200%;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  background-color: rgb(239, 240, 240, 0.9);
+  height: 3rem;
+}
+
+ul { 
+  list-style: none;
+  padding-left: 8px;
+}
+
+ul li {
+  margin-bottom: 2px;
+}
+
+.RestaurantCardMenuList {
+  color: rgb(236, 167, 46);
+  font-size: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgb(239, 240, 240, 0.9);
+  margin: 1rem;
+}
+
+@media screen and (min-width: 40rem) {
+  .RestaurantsList {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: none;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .restaurant_card {
+    margin: 0;
+  }
+  .menu_card {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  .RestaurantsList {
+    grid-template-columns: auto auto auto;
+  }
+}
