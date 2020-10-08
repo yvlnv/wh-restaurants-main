@@ -20,6 +20,10 @@ h2, dt, dd {
   font-family: Verdana;
   }
 
+h2 {
+  text-align: center;
+}
+
 div {
     background-color: rgb(239, 240, 240);
     word-wrap: break-word;
@@ -167,9 +171,19 @@ button {
   width: 100%;
 }
 
-form {
-  width: 80%;
+.edit_restaurant {
   padding: 2rem;
+}
+
+.editor_button {
+  width: 40%;
+  display: inline-block;
+  padding: 1rem;
+  padding-left: 2.5rem;
+}
+
+form {
+  padding: 1rem;
 }
 
 .RestaurantCardMenuList {
@@ -190,9 +204,6 @@ form {
     gap: 1rem;
   }
   .restaurant_card {
-    margin: 0;
-  }
-  .menu_card {
     margin: 0;
   }
 }

@@ -1,0 +1,14 @@
+<main>
+    <div><h1>Edit name or image</h1></div>
+    <aricle>
+        <form action="/edit/restaurants/{{restaurant.id}}/edit_name_image" method="POST">
+            <label>New name</label>
+            <input name="name" type="text" value="{{restaurant.name}}" required/>
+            <br>
+            <label>New URL</label>
+            <input name="image" type="url" value="{{restaurant.image}}" required/>
+            <br>
+            <button>Edit restaurant</button>
+        </form>
+    </aricle>
+</main>

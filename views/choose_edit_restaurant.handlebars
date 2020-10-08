@@ -1,0 +1,14 @@
+<main>
+    <div><h1>Choose a restaurant</h1></div>
+    <section class="RestaurantsList">
+        {{#each restaurants}}
+        <a href="/edit/restaurants/{{this.id}}">
+            <article class="restaurant_card">
+                <header style="background-image: url({{this.image}});", class="restaurant">
+                    <main>{{this.name}}</main>
+                </header>
+            </article>
+        {{/each}}
+    </section>
+    <footer>{{date}}</footer>
+</main>

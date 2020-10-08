@@ -19,13 +19,16 @@ app.get('/', async (req, res) => {
     const restaurants = await Restaurant.findAll({
         include: [{model: Menu, as: "menus"}]
     })
-    console.log(restaurants)
     res.render('restaurants', {restaurants, date: new Date()})
 })
 
 app.post('/', async (req, res) => {
     await Restaurant.create(req.body)
     res.redirect('/')
+})
+
+app.post('/restaurants/:id', (req, res) => {
+    res.redirect(`/restaurants/${req.params.id}`)
 })
 
 app.get('/restaurants/:id', async (req, res) => {
@@ -40,8 +43,55 @@ app.get('/about', (req, res) => {
     res.render('about', {name: 'Yana'})
 })
 
-app.get('/add_restaurant', (req, res) => {
+app.get('/edit', (req, res) => {
+    res.render('edit')
+})
+
+app.get('/edit/add', (req, res) => {
     res.render('add_restaurant')
+})
+
+app.get('/edit/restaurants/:id/edit_name_image', async (req, res) => {
+    const restaurant = await Restaurant.findByPk(req.params.id)
+    res.render('edit_name_image', {restaurant})
+})
+
+app.get('/edit/restaurants', async (req, res) => {
+    const restaurants = await Restaurant.findAll({
+        include: [{model: Menu, as: "menus"}]
+    })
+    res.render('choose_edit_restaurant', {restaurants})
+})
+
+app.post('/edit/restaurants/:id/edit_name_image', async (req, res) => {
+    const restaurant = await Restaurant.findByPk(req.params.id)
+    restaurant.update(req.body)
+    res.redirect(`/edit/restaurants/${req.params.id}`)
+})
+
+app.post('/edit/restaurants/:id/delete', async (req, res) => {
+    const restaurant = await Restaurant.findByPk(req.params.id)
+    restaurant.destroy()
+    res.redirect('/')
+})
+
+app.post('/edit/restaurants/:id/add_menu', async (req, res) => {
+    await Menu.create(req.body)
+    console.log(req.body)
+    res.redirect(`/edit/restaurants/${req.params.id}`)
+})
+
+app.get('/edit/restaurants/:id/add_menu', async (req, res) => {
+    const restaurant = await Restaurant.findByPk(req.params.id)
+    res.render('add_menu', {restaurant})
+})
+
+app.get('/edit/restaurants/:id', async (req, res) => {
+    const restaurant = await Restaurant.findByPk(req.params.id)
+    const menus = await restaurant.getMenus({
+        include: ['items']
+    })
+    res.render('edit_restaurant', {restaurant, menus})
 })
 
 app.listen(3000, async () => {
