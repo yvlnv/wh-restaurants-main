@@ -1,0 +1,11 @@
+<main>
+    <div><h1>Edit menu name</h1></div>
+    <aricle>
+        <form action="/edit/restaurants/{{restaurant.id}}/edit_menu_name/{{menu.id}}" method="POST">
+            <label>New name</label>
+            <input name="title" type="text" value="{{menu.title}}" required/>
+            <br>
+            <button>Edit menu name</button>
+        </form>
+    </aricle>
+</main>

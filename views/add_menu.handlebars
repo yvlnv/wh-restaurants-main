@@ -4,14 +4,10 @@
         <form action="/edit/restaurants/{{restaurant.id}}/add_menu" method="POST">
             <label>Menu name</label>
             <input name="title" type="text" placeholder="Menu name"/>
+            <input name="RestaurantId" type="hidden" value="{{restaurant.id}}"/>
             <br>
-            <label>Item name</label>
-            <input name="name" type="test"/>
-            <br>
-            <label>Item price</label>
-            <input name="price"/>
-            <br>
-            <button disabled="true">Add menu</button>
+            <h2>You can add items on the restaurant page</h2>
+            <button>Add menu</button>
         </form>
     </aricle>
 </main>

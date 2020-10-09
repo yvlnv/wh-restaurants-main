@@ -4,9 +4,6 @@
             <form action='/edit/restaurants/{{restaurant.id}}/edit_name_image' method="GET">
             <button>Edit name or image</button>
             </form>
-            <form action='/edit/restaurants/{{restaurant.id}}/add_menu' method="GET">
-            <button>Add menu</button>
-            </form>
             <form action='/edit/restaurants/{{restaurant.id}}/delete' method="POST">
             <button>Delete</button>
             </form>
@@ -16,7 +13,16 @@
 <section>
     {{#each menus}}
        <article class="menu_card">
-            <h2>{{this.title}}</h2>
+            <h2>
+                {{this.title}}
+                <br>
+                <form action='/edit/restaurants/{{../restaurant.id}}/edit_menu_name/{{this.id}}' method="GET">
+                <button>Edit name</button>
+                </form>
+                <form action='/edit/restaurants/{{../restaurant.id}}/delete_menu/{{this.id}}' method="POST">
+                <button>Delete menu</button>
+                </form>
+            </h2>
             <dl>
                 {{#each this.items}}
                     <div class="menu">
@@ -25,6 +31,12 @@
                     </div>
                 {{/each}}
             </dl>
+            <form action='/edit/restaurants/{{../restaurant.id}}/add_item/{{this.id}}' method="GET">
+            <button>Add item</button>
+            </form>
         </article>
     {{/each}}
+     <form action='/edit/restaurants/{{restaurant.id}}/add_menu' method="GET">
+     <button>Add menu</button>
+     </form>
 </section>

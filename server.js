@@ -56,6 +56,24 @@ app.get('/edit/restaurants/:id/edit_name_image', async (req, res) => {
     res.render('edit_name_image', {restaurant})
 })
 
+app.get('/edit/restaurants/:id/edit_menu_name/:menu_id', async (req, res) => {
+    const restaurant = await Restaurant.findByPk(req.params.id)
+    const menu = await Menu.findByPk(req.params.menu_id)
+    res.render('edit_menu_name', {restaurant, menu})
+})
+
+app.get('/edit/restaurants/:id/add_item/:menu_id', async (req, res) => {
+    const menu = await Menu.findByPk(req.params.menu_id)
+    const restaurant = await Restaurant.findByPk(req.params.id)
+    res.render('add_item', {menu, restaurant})
+})
+
+app.post('/edit/restaurants/:id/edit_menu_name/:menu_id', async (req, res) => {
+    const menu = await Menu.findByPk(req.params.menu_id)
+    menu.update(req.body)
+    res.redirect(`/edit/restaurants/${req.params.id}`)
+})
+
 app.get('/edit/restaurants', async (req, res) => {
     const restaurants = await Restaurant.findAll({
         include: [{model: Menu, as: "menus"}]
@@ -75,8 +93,20 @@ app.post('/edit/restaurants/:id/delete', async (req, res) => {
     res.redirect('/')
 })
 
+app.post('/edit/restaurants/:id/delete_menu/:menu_id', async (req, res) => {
+    const menu = await Menu.findByPk(req.params.menu_id)
+    menu.destroy()
+    res.redirect(`/edit/restaurants/${req.params.id}`)
+})
+
 app.post('/edit/restaurants/:id/add_menu', async (req, res) => {
     await Menu.create(req.body)
+    console.log(req.body)
+    res.redirect(`/edit/restaurants/${req.params.id}`)
+})
+
+app.post('/edit/restaurants/:id/add_item/:menu_id', async (req, res) => {
+    await Item.create(req.body)
     console.log(req.body)
     res.redirect(`/edit/restaurants/${req.params.id}`)
 })
