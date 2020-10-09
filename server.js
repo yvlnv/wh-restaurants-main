@@ -40,7 +40,7 @@ app.get('/restaurants/:id', async (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-    res.render('about', {name: 'Yana'})
+    res.render('about', {name: 'Yana Volnova'})
 })
 
 app.get('/edit', (req, res) => {
@@ -60,6 +60,13 @@ app.get('/edit/restaurants/:id/edit_menu_name/:menu_id', async (req, res) => {
     const restaurant = await Restaurant.findByPk(req.params.id)
     const menu = await Menu.findByPk(req.params.menu_id)
     res.render('edit_menu_name', {restaurant, menu})
+})
+
+app.get('/edit/restaurants/:id/:menu_id/edit_item/:item_id', async (req, res) => {
+    const restaurant = await Restaurant.findByPk(req.params.id)
+    const menu = await Menu.findByPk(req.params.menu_id)
+    const item = await Item.findByPk(req.params.item_id)
+    res.render('edit_item', {restaurant, menu, item})
 })
 
 app.get('/edit/restaurants/:id/add_item/:menu_id', async (req, res) => {
@@ -87,6 +94,12 @@ app.post('/edit/restaurants/:id/edit_name_image', async (req, res) => {
     res.redirect(`/edit/restaurants/${req.params.id}`)
 })
 
+app.post('/edit/restaurants/:id/:menu_id/edit_item/:item_id', async (req, res) => {
+    const item = await Item.findByPk(req.params.item_id)
+    item.update(req.body)
+    res.redirect(`/edit/restaurants/${req.params.id}`)
+})
+
 app.post('/edit/restaurants/:id/delete', async (req, res) => {
     const restaurant = await Restaurant.findByPk(req.params.id)
     restaurant.destroy()
@@ -96,6 +109,12 @@ app.post('/edit/restaurants/:id/delete', async (req, res) => {
 app.post('/edit/restaurants/:id/delete_menu/:menu_id', async (req, res) => {
     const menu = await Menu.findByPk(req.params.menu_id)
     menu.destroy()
+    res.redirect(`/edit/restaurants/${req.params.id}`)
+})
+
+app.post('/edit/restaurants/:id/delete_item/:item_id', async (req, res) => {
+    const item = await Item.findByPk(req.params.item_id)
+    item.destroy()
     res.redirect(`/edit/restaurants/${req.params.id}`)
 })
 

@@ -17,20 +17,24 @@
                 {{this.title}}
                 <br>
                 <form action='/edit/restaurants/{{../restaurant.id}}/edit_menu_name/{{this.id}}' method="GET">
-                <button>Edit name</button>
+                    <button>Edit name</button>
                 </form>
                 <form action='/edit/restaurants/{{../restaurant.id}}/delete_menu/{{this.id}}' method="POST">
-                <button>Delete menu</button>
+                    <button>Delete menu</button>
                 </form>
             </h2>
-            <dl>
-                {{#each this.items}}
-                    <div class="menu">
-                        <dt>{{this.name}}</dt>
-                        <dd>£{{this.price}}</dd>
-                    </div>
-                {{/each}}
-            </dl>
+            {{#each this.items}}
+                <div class="menu">
+                    {{this.name}}
+                    £{{this.price}}
+                    <form class="item_button" action='/edit/restaurants/{{../../restaurant.id}}/{{../this.id}}/edit_item/{{this.id}}' method="GET">
+                        <button class="btn">✏️</button>
+                    </form>
+                    <form class="item_button" action='/edit/restaurants/{{../../restaurant.id}}/delete_item/{{this.id}}' method="POST">
+                        <button class="btn">❌</button>
+                    </form>
+                </div>
+            {{/each}}
             <form action='/edit/restaurants/{{../restaurant.id}}/add_item/{{this.id}}' method="GET">
             <button>Add item</button>
             </form>
